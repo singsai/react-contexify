@@ -18,7 +18,7 @@ class ContextMenu extends Component {
     className: PropTypes.string,
     style: PropTypes.object,
     theme: PropTypes.string,
-    animation: PropTypes.string
+    animation: PropTypes.string,
   };
 
   static defaultProps = {
@@ -41,6 +41,7 @@ class ContextMenu extends Component {
   hideTimeout = null;
 
   componentDidMount() {
+    // console.log ("ContextMenu.js - componentDidMountPROPS: ", this.props);
     this.unsub.push(eventManager.on(`display::${this.props.id}`, this.show));
     this.unsub.push(eventManager.on('hideAll', this.hide));
   }
@@ -116,10 +117,34 @@ class ContextMenu extends Component {
       y -= y + menuHeight - windowHeight;
     }
 
+    const leftX = this.state.nativeEvent.srcElement.getClientRects()[0].x;
+    const top = this.state.nativeEvent.srcElement.getClientRects()[0].top;
+    const height = this.state.nativeEvent.srcElement.getClientRects()[0].height;
+    const width = this.state.nativeEvent.srcElement.getClientRects()[0].width;
+    const rightX = (1280 - leftX - width);
+
+    const { position } = this.props;
+    const offsetX = (position && position.offsetX) || 0;
+    const offsetY = (position && position.offsetY) || 0;
+    const align = (position && position.align) || null;
+    
+    const coords = {
+      x: position && align === 'right' ? rightX  : leftX,
+      y: position && (top + height)
+    }
+    coords.x += offsetX;
+    coords.y += offsetY;
+
+    /*
+    If a POSITION prop is found in the form of position={{ align: right, offsetX: 0, offsetY: 0 }} then 
+    the coordinate of the element that was clicked will be used to determine the position of the context menu (instead 
+    of the coordinate of the mouse cursor). offsetX and offsetY will also be factored in if found.
+    */
+
     this.setState(
       {
-        x,
-        y
+        x: position ? coords.x : x,
+        y: position ? coords.y : y
       },
       this.bindWindowEvent
     );
@@ -187,7 +212,7 @@ class ContextMenu extends Component {
   };
 
   render() {
-    const { theme, animation, style, className } = this.props;
+    const { theme, animation, style, className, position } = this.props;
     const cssClasses = cx(styles.menu, className, {
       [styles.theme + theme]: theme !== null,
       [styles.animationWillEnter + animation]: animation !== null

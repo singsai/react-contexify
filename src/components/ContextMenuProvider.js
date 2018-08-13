@@ -41,7 +41,8 @@ class ContextMenuProvider extends Component {
       `display::${this.props.id}`,
       e.nativeEvent,
       this.childrenRefs.length === 1 ? this.childrenRefs[0] : this.childrenRefs,
-      this.props.data
+      this.props.data,
+      this.props.position,
     );
   };
 
@@ -55,6 +56,7 @@ class ContextMenuProvider extends Component {
       style,
       storeRef,
       data,
+      position,
       ...rest
     } = this.props;
 
@@ -76,7 +78,7 @@ class ContextMenuProvider extends Component {
   }
 
   render() {
-    const { component, render, event, className, style } = this.props;
+    const { component, render, event, className, style, position } = this.props;
     const attributes = {
       [event]: this.handleEvent,
       className,
@@ -84,10 +86,12 @@ class ContextMenuProvider extends Component {
     };
 
     if (typeof render === 'function') {
-      return render({ ...attributes, children: this.getChildren() });
+      return render({ ...attributes, children: this.getChildren(),
+        position });
     }
 
-    return createElement(component, attributes, this.getChildren());
+    return createElement(component, attributes, this.getChildren(),
+    position);
   }
 }
 

@@ -35,7 +35,7 @@
     .react-contexify__item--disabled {
       cursor: default;
       opacity: .5; }
-    .react-contexify__item__data {
+    .react-contexify__item__data, .react-contexify__item__parent {
       min-width: 140px;
       padding: 6px 12px;
       display: flex;

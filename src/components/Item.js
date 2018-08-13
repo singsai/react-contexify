@@ -45,6 +45,7 @@ class Item extends Component {
   };
 
   render() {
+    // console.log ("ItemJS: RENDER() props: ", this.props)
     const {
       className,
       disabled,
