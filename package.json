@@ -1,6 +1,6 @@
 {
-  "name": "react-contexify",
-  "version": "3.0.2",
+  "name": "@riffyn/nested-context-menu",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "typings": "./index.d.ts",
   "description": "Add contextmenu to your react component with ease",
@@ -26,14 +26,14 @@
     "prestyle": "sass src/scss/main.scss dist/ReactContexify.css",
     "style": "postcss --use autoprefixer -b 'last 2 versions' < dist/ReactContexify.css | cssnano --no-reduceIdents > dist/ReactContexify.min.css"
   },
+  "author": "Riffyn",
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fkhadra/react-contexify.git"
+    "url": "git+https://github.com/RiffynInc/nested-context-menu.git"
   },
-  "author": "Fadi Khadra <fdkhadra@gmail.com> (https://github.com/fkhadra)",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fkhadra/react-contexify/issues"
+    "url": "https://github.com/RiffynInc/nested-context-menu.git/issues"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.5",
@@ -81,5 +81,9 @@
       "raf/polyfill",
       "<rootDir>/setupTests.js"
     ]
+  },
+  "homepage": "https://github.com/fkhadra/react-contexify#readme",
+  "directories": {
+    "lib": "lib"
   }
 }
