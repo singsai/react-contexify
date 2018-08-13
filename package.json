@@ -1,6 +1,6 @@
 {
   "name": "@riffyn/nested-context-menu",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "lib/index.js",
   "typings": "./index.d.ts",
   "description": "Add contextmenu to your react component with ease",
