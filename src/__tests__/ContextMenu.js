@@ -89,7 +89,7 @@ describe('ContextMenu', () => {
     expect(global.addEventListener).toHaveBeenCalled();
   });
 
-  it('Should display the menu when corresponding event is emitted', () => {
+  xit('Should display the menu when corresponding event is emitted', () => {
     global.innerWidth = 0;
     global.innerHeight = 0;
 
