@@ -97,6 +97,7 @@ class ContextMenu extends Component {
     if (e.keyCode === KEY.ENTER || e.keyCode === KEY.ESC) {
       this.unBindWindowEvent();
       this.setState({ visible: false });
+      this.props.callback && this.props.callback();
     }
   };
 
@@ -212,7 +213,7 @@ class ContextMenu extends Component {
   };
 
   render() {
-    const { theme, animation, style, className, position } = this.props;
+    const { theme, animation, style, className, position, callback } = this.props;
     const cssClasses = cx(styles.menu, className, {
       [styles.theme + theme]: theme !== null,
       [styles.animationWillEnter + animation]: animation !== null

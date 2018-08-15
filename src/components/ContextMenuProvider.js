@@ -43,6 +43,7 @@ class ContextMenuProvider extends Component {
       this.childrenRefs.length === 1 ? this.childrenRefs[0] : this.childrenRefs,
       this.props.data,
       this.props.position,
+      this.props.callback,
     );
   };
 
@@ -57,6 +58,7 @@ class ContextMenuProvider extends Component {
       storeRef,
       data,
       position,
+      callback,
       ...rest
     } = this.props;
 
@@ -78,7 +80,7 @@ class ContextMenuProvider extends Component {
   }
 
   render() {
-    const { component, render, event, className, style, position } = this.props;
+    const { component, render, event, className, style, position, callback } = this.props;
     const attributes = {
       [event]: this.handleEvent,
       className,
@@ -87,11 +89,11 @@ class ContextMenuProvider extends Component {
 
     if (typeof render === 'function') {
       return render({ ...attributes, children: this.getChildren(),
-        position });
+        position, callback });
     }
 
     return createElement(component, attributes, this.getChildren(),
-    position);
+    position, callback);
   }
 }
 
