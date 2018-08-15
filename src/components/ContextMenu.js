@@ -91,6 +91,8 @@ class ContextMenu extends Component {
     }
     this.unBindWindowEvent();
     this.setState({ visible: false });
+    // console.log ("About to call callback")
+    // this.props.callback && this.props.callback();
   };
 
   handleKeyboard = e => {
